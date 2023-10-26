@@ -5,7 +5,7 @@ Description:
   Key name: StarSetter
 """
 
-import os, argparse, win32com.client
+import os, argparse, win32com.client, mutagen
 
 file_path = "C:\\Users\\ZT\\Documents\\_) Programs\\Batch-Programs\\Python-Windows-Star-Rating-Context-Assigner\\Examples\\Soldier.mp3"
 
@@ -47,21 +47,40 @@ file_path = "C:\\Users\\ZT\\Documents\\_) Programs\\Batch-Programs\\Python-Windo
 # time.sleep(5)
 
 
-def inspect_file_properties(file_path):
-    shell = win32com.client.Dispatch("Shell.Application")
-    folder = shell.NameSpace(os.path.dirname(file_path))
-    file = folder.ParseName(os.path.basename(file_path))
+# def inspect_file_properties(file_path):
+#     shell = win32com.client.Dispatch("Shell.Application")
+#     folder = shell.NameSpace(os.path.dirname(file_path))
+#     file = folder.ParseName(os.path.basename(file_path))
 
-    folder.setDetailsOf(file, 19, 3)
-    property_name = folder.GetDetailsOf(file, 19)
-    # value = folder.GetDetailsOf(file, 19)
+#     # folder.setDetailsOf(file, 19, 3)
+#     property_name = folder.GetDetailsOf(file, 19)
+#     # value = folder.GetDetailsOf(file, 19)
 
-    print(f"Property 19: {property_name} = {value}")
+#     print(f"Property 19: {property_name} = {value}")
 
-    # for i in range(266):
-    #   if i != 28 and i != 254:
-    #     property_name = folder.GetDetailsOf(file, i)
-    #     value = folder.GetDetailsOf(file, i)
-    #     print(f"Property {i}: {property_name} = {value}")
+#     # for i in range(266):
+#     #   if i != 28 and i != 254:
+#     #     property_name = folder.GetDetailsOf(file, i)
+#     #     value = folder.GetDetailsOf(file, i)
+#     #     print(f"Property {i}: {property_name} = {value}")
 
-inspect_file_properties(file_path)
+# inspect_file_properties(file_path)
+
+"""
+Rating Values:
+  0 : None
+  1 : 1
+  2 : 64
+  3 : 128
+  4 : 196
+  5 : 255
+"""
+
+for frame in mutagen.File(file_path).tags.getall("POPM:Windows Media Player 9 Series"):
+  print(type(frame))
+  print(frame)
+  print(frame.rating)
+  frame.rating = 64
+  print(frame.rating)
+  print(frame)
+  # frame
