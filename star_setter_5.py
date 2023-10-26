@@ -6,6 +6,7 @@ Description:
 """
 
 import os, argparse, win32com.client, mutagen
+from mutagen.id3 import POPM, ID3
 
 file_path = "C:\\Users\\ZT\\Documents\\_) Programs\\Batch-Programs\\Python-Windows-Star-Rating-Context-Assigner\\Examples\\Soldier.mp3"
 
@@ -76,11 +77,29 @@ Rating Values:
   5 : 255
 """
 
-for frame in mutagen.File(file_path).tags.getall("POPM:Windows Media Player 9 Series"):
-  print(type(frame))
-  print(frame)
-  print(frame.rating)
-  frame.rating = 64
-  print(frame.rating)
-  print(frame)
-  # frame
+audio = ID3(file_path)
+
+print(audio)
+print(audio['POPM:Windows Media Player 9 Series'].rating)
+audio['POPM:Windows Media Player 9 Series'].rating = 64
+print(audio)
+audio.save()
+print(type(audio))
+
+# for frame in mutagen.File(file_path).tags.getall("POPM:Windows Media Player 9 Series"):
+#   print(type(frame))
+#   print(frame)
+#   print(frame.rating)
+#   frame.rating = 64
+#   print(frame.rating)
+#   # frame.setRating(frame.rating)
+#   print(frame)
+#   frame.save()
+
+"""
+{
+  'TSSE': TSSE(encoding=<Encoding.LATIN1: 0>, text=['Lavf58.45.100']),
+  'TPE2': TPE2(encoding=<Encoding.LATIN1: 0>, text=['Fleurie']),
+  'POPM:Windows Media Player 9 Series': POPM(email='Windows Media Player 9 Series', rating=255)
+}
+"""
