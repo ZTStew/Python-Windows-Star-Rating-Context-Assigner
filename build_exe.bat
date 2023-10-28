@@ -9,6 +9,7 @@ cd ".."
 
 rem copies python program over to different folder to build it
 copy ".\star_setter_5.py" ".\Build"
+copy ".\execute.py" ".\Build"
 
 rem moves to location of copied file
 cd ".\Build"
