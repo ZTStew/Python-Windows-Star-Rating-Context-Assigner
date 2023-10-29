@@ -20,10 +20,10 @@ rem moves to location of copied file
 cd ".\Build"
 
 rem builds python program into .exe
-pyinstaller star_setter_0.py -y
-pyinstaller star_setter_1.py -y
-pyinstaller star_setter_2.py -y
-pyinstaller star_setter_3.py -y
-pyinstaller star_setter_4.py -y
-pyinstaller star_setter_5.py -y
+pyinstaller --noconsole star_setter_0.py -y
+pyinstaller --noconsole star_setter_1.py -y
+pyinstaller --noconsole star_setter_2.py -y
+pyinstaller --noconsole star_setter_3.py -y
+pyinstaller --noconsole star_setter_4.py -y
+pyinstaller --noconsole star_setter_5.py -y
 rem timeout /t 10

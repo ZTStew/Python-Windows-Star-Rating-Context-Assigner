@@ -5,17 +5,16 @@ Description:
   Key name: StarSetter
 """
 
-"""
-Rating Values:
-  0 : None
-  1 : 1
-  2 : 64
-  3 : 128
-  4 : 196
-  5 : 255
-"""
 from mutagen.id3 import POPM, ID3, COMM
+from mutagen.mp4 import MP4
 
+
+"""
+Function: set_stars_mp3
+Arugments:
+  file_path -> path to file being used
+  rating -> new rating of file 
+"""
 def set_stars_mp3(file_path, rating):
   # Rating method for only .mp3 files
   print(f"Processing: {file_path}")
@@ -36,3 +35,40 @@ def set_stars_mp3(file_path, rating):
 
   print(audio)
   audio.save()
+
+"""
+Function: set_stars_mp4
+Arugments:
+  file_path -> path to file being used
+  rating -> new rating of file 
+"""
+
+"""
+0-19: No stars (or 0 stars)
+20-39: 1 star
+40-59: 2 stars
+60-79: 3 stars
+80-99: 4 stars
+100: 5 stars
+"""
+# Problem, the .mp4 metadata responsible for ratings on Windows does not seem to be editable
+def set_stars_mp4(file_path, rating):
+  print(f"Processing: {file_path}")
+  # video = MP4(file_path)
+  # print(video)
+  # rating = 100
+
+  # video['rati'] = [str(rating)]
+
+  # print(video)
+  # video.save()
+
+
+"""
+Function: set_stars_image
+Arugments:
+  file_path -> path to file being used
+  rating -> new rating of file 
+"""
+def set_stars_image(file_path, rating):
+  print(f"Processing: {file_path}")
