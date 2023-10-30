@@ -14,6 +14,7 @@ copy ".\star_setter_2.py" ".\Build"
 copy ".\star_setter_3.py" ".\Build"
 copy ".\star_setter_4.py" ".\Build"
 copy ".\star_setter_5.py" ".\Build"
+copy ".\star_setter.py" ".\Build"
 copy ".\execute.py" ".\Build"
 
 rem moves to location of copied file
@@ -26,4 +27,5 @@ pyinstaller --noconsole star_setter_2.py -y
 pyinstaller --noconsole star_setter_3.py -y
 pyinstaller --noconsole star_setter_4.py -y
 pyinstaller --noconsole star_setter_5.py -y
+pyinstaller --noconsole star_setter.py -y
 rem timeout /t 10

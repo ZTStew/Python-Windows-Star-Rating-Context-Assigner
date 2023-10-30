@@ -70,5 +70,6 @@ Arugments:
   file_path -> path to file being used
   rating -> new rating of file 
 """
+# Despite all attempts, I was unable to programatically effect the star rating of image files
 def set_stars_image(file_path, rating):
   print(f"Processing: {file_path}")
