@@ -1,7 +1,6 @@
 """
 Description:
-  Attempt to add additional variables to the registry so that a single .exe file would need to be compiled.
-  Status: Failed
+  
 """
 
 from execute import *
@@ -19,14 +18,22 @@ ratings = {
   "5" : 255
 }
 
-print('here')
 
 args = argparse.ArgumentParser()
-args.add_argument("--files")
-args.add_argument("--rating")
-args = args.parse_args()
+args.add_argument(
+  "-f",
+  "--file",
+  type=str,
+  help="Specify the file name."
+)
+args.add_argument(
+  "-r",
+  "--rating",
+  type=int,
+  help="Specify the file name."
+)
 
-print(args)
+args = args.parse_args()
 
 # file_path = "./Examples/jpgtest1.jpg"
 # file_path = "./Examples/jpegtest1.jpeg"
@@ -34,12 +41,9 @@ print(args)
 # file_path = "./Examples/mp3test1.mp3"
 # file_path = "./Examples/mp4test1.mp4"
 
-# Loops through selected files
-# for file_path in args.files:
-if os.path.splitext(args.files)[1] == ".mp3":
-  set_stars_mp3(args.files, ratings[str(args.rating)])
+if os.path.splitext(args.file)[1] == ".mp3":
+  set_stars_mp3(args.file, ratings[str(args.rating)])
 
-time.sleep(10)
 
 # Does not appear to be possible on Windows *to investigate further*
 # if os.path.splitext(file_path)[1] == ".mp4":
