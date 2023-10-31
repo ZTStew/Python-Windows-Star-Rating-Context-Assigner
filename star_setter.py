@@ -19,11 +19,14 @@ ratings = {
   "5" : 255
 }
 
+print('here')
 
 args = argparse.ArgumentParser()
-args.add_argument("--files", nargs="*", help="Files to process")
-args.add_argument("-r", "--rating", type=int, help="Value of desired rating [0-5]")
+args.add_argument("--files")
+args.add_argument("--rating")
 args = args.parse_args()
+
+print(args)
 
 # file_path = "./Examples/jpgtest1.jpg"
 # file_path = "./Examples/jpegtest1.jpeg"
@@ -32,9 +35,11 @@ args = args.parse_args()
 # file_path = "./Examples/mp4test1.mp4"
 
 # Loops through selected files
-for file_path in args.files:
-  if os.path.splitext(file_path)[1] == ".mp3":
-    set_stars_mp3(args.files, ratings[str(args.rating)])
+# for file_path in args.files:
+if os.path.splitext(args.files)[1] == ".mp3":
+  set_stars_mp3(args.files, ratings[str(args.rating)])
+
+time.sleep(10)
 
 # Does not appear to be possible on Windows *to investigate further*
 # if os.path.splitext(file_path)[1] == ".mp4":
