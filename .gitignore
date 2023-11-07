@@ -4,6 +4,7 @@
 *.jpeg
 *.jpg
 *.gif
+*.log
 Examples*/
 Build*/
 

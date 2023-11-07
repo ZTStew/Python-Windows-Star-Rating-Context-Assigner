@@ -6,7 +6,20 @@ Description:
 from execute import *
 
 import os, argparse, time
+import logging as log
 from PIL import Image
+
+log.basicConfig(
+    filename=os.path.dirname(os.path.abspath(__file__)) + '\\Log\\star_setter.log',
+    level=log.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+# log.debug("debug message")
+# log.info("info message")
+# log.warning("warning message")
+# log.error("error message")
+# log.critical("critical message")
+
 
 # star rating values are not 1, 2, 3. Instead they are based on a value from 0-255. Dictionary converts it to minimize confusion
 ratings = {
@@ -18,6 +31,7 @@ ratings = {
   "5" : 255
 }
 
+log.critical("### ### ### V Program Starts V ### ### ###")
 
 args = argparse.ArgumentParser()
 args.add_argument(
@@ -34,6 +48,7 @@ args.add_argument(
 )
 
 args = args.parse_args()
+file_path = args.file
 
 # file_path = "./Examples/jpgtest1.jpg"
 # file_path = "./Examples/jpegtest1.jpeg"
@@ -41,20 +56,26 @@ args = args.parse_args()
 # file_path = "./Examples/mp3test1.mp3"
 # file_path = "./Examples/mp4test1.mp4"
 
-if os.path.splitext(args.file)[1] == ".mp3":
-  set_stars_mp3(args.file, ratings[str(args.rating)])
+
+log.info("Path: " + file_path)
+log.info("Rating: " + str(args.rating))
+
+if os.path.splitext(file_path)[1] == ".mp3":
+  log.info("MP3 file detected")
+  log.info(set_stars_mp3(file_path, ratings[str(args.rating)]))
 
 
 # Does not appear to be possible on Windows *to investigate further*
 # if os.path.splitext(file_path)[1] == ".mp4":
 #   set_stars_mp4(file_path, ratings["5"])
 
-# else:
-#   def is_image(file_path):
-#     try:
-#       with Image.open(file_path) as img:
-#         return True
-#     except:
-#       return False
+else:
+  def is_image(file_path):
+    try:
+      with Image.open(file_path) as img:
+        return True
+    except:
+      return False
 
-#   set_stars_image(file_path, "5")
+  if is_image(file_path):
+    set_stars_image(file_path, "5")

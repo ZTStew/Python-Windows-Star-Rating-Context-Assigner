@@ -9,6 +9,7 @@ from mutagen.id3 import POPM, ID3, COMM
 from mutagen.mp4 import MP4
 
 
+
 """
 Function: set_stars_mp3
 Arugments:
@@ -16,25 +17,26 @@ Arugments:
   rating -> new rating of file 
 """
 def set_stars_mp3(file_path, rating):
+  return_log = "\n"
   # Rating method for only .mp3 files
-  print(f"Processing: {file_path}")
   audio = ID3(file_path)
-  
+  return_log += "Audio: " + str(audio) + "\n"
+
   try:
     # Changes rating for .mp3 files in POPM format 
     audio['POPM:Windows Media Player 9 Series'].rating = rating
-    print(audio)
   except:
     # When a Windows file has metadata, it is wrapped in the POPM object.
     # If there is no metadata, then the POPM object doesn't exist and so the .mp3 file needs to be wrapped in a POPM object
 
     # Case handles when the non-encapsulated .mp3 file is a TPE2 file
-    print("TPE2 File Detected")
+    return_log += "!!! TPE2 File Detected !!!\n"
     audio.add(POPM(email=audio.get("TPE2").text[0], rating=rating))
 
 
-  print(audio)
+  return_log += "Rated Audio: " + str(audio) + "\n"
   audio.save()
+  return return_log
 
 """
 Function: set_stars_mp4
