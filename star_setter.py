@@ -50,7 +50,7 @@ args.add_argument(
 args = args.parse_args()
 file_path = args.file
 
-# file_path = "./Examples/jpgtest1.jpg"
+file_path = "./Examples/jpgtest1.jpg"
 # file_path = "./Examples/jpegtest1.jpeg"
 # file_path = "./Examples/pngtest1.PNG"
 # file_path = "./Examples/mp3test1.mp3"
@@ -78,4 +78,5 @@ else:
       return False
 
   if is_image(file_path):
-    set_stars_image(file_path, "5")
+    log.info("Image Detected")
+    log.info(set_stars_image(file_path, "5"))
