@@ -9,7 +9,7 @@ import os
 import win32com.client
 from mutagen.id3 import POPM, ID3, COMM
 from mutagen.mp4 import MP4
-
+import winreg
 
 
 """
@@ -80,26 +80,50 @@ def set_stars_image(file_path, rating):
 
   log = ""
 
+  # registry_path = 
+
+  file = open(file_path, "w")
+
   try:
-    shell = win32com.client.Dispatch("Shell.Application")
-    # Use when not testing
-    # folder = shell.NameSpace(os.path.dirname(file_path))
-    # Use when testing
-    folder = shell.NameSpace(os.path.dirname(os.path.abspath(file_path)))
-    file = os.path.basename(file_path)
+    # Write content to the file
+    file.write(content)
+  finally:
+      # Close the file
+      file.close()
 
-    for i in range(0, 266):
-      # log += str(i) + ": " + folder.GetDetailsOf(file, i) + "\n"
-      if folder.GetDetailsOf(file, i) == "Rating":
-        print("found it")
-        print("Rating: " + folder.GetDetailsOf(folder.ParseName(file), i))
+  # with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, file_path) as key:
+  #   print(key)
 
-        break
 
-    return log
+  # try:
+  #   shell = win32com.client.Dispatch("Shell.Application")
+  #   # Use when not testing
+  #   # folder = shell.NameSpace(os.path.dirname(file_path))
+  #   # Use when testing
+  #   folder = shell.NameSpace(os.path.dirname(os.path.abspath(file_path)))
+  #   file = os.path.basename(file_path)
 
-    return "Rating not found"
+  #   for i in range(0, 266):
+  #     # log += str(i) + ": " + folder.GetDetailsOf(file, i) + "\n"
+  #     if folder.GetDetailsOf(file, i) == "Rating":
+  #       # print("found it")
+  #       log += "Rating: " + folder.GetDetailsOf(folder.ParseName(file), i)
 
-  except Exception as e:
-    print(e)
-    return f"Error: {str(e)}"
+  #       # print(file)
+  #       file = folder.ParseName(file)
+  #       print(file)
+
+  #       file.InvokeVerbEx("setprop", i, "4 Stars")
+
+  #       # folder.GetDetailsOf(file, i) = "5"
+  #       # print(folder.GetDetailsOf(file, i))
+
+  #       break
+
+  #   return log
+
+  #   return "Rating not found"
+
+  # except Exception as e:
+  #   print(e)
+  #   return f"Error: {str(e)}"
