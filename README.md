@@ -24,4 +24,7 @@ Computer\HKEY_CLASSES_ROOT\.mp3\shell\☼ mp31\command
 Computer\HKEY_CLASSES_ROOT\*\shell
 Computer\HKEY_CLASSES_ROOT\mp3file\shell\test\command
 
-https://stackoverflow.com/questions/2123762/add-menu-item-to-windows-context-menu-only-for-specific-filetype
+---
+### Resources:
+https://docs.python.org/3/library/winreg.html  
+https://stackoverflow.com/questions/2123762/add-menu-item-to-windows-context-menu-only-for-specific-filetype  

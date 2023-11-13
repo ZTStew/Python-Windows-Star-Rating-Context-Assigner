@@ -61,17 +61,18 @@ rating = args.rating
 
 if args.test:
   log.critical("Test Running")
-  # file_path = "./Examples/jpgtest1.jpg"
+  # file_path = "./Examples/mp3test1.mp3"
+  file_path = "./Examples/jpgtest1 - Copy (2).jpg"
   # file_path = "./Examples/jpegtest1.jpeg"
   # file_path = "./Examples/pngtest1.PNG"
   # file_path = "./Examples/mp4test1.mp4"
-  file_path = "./Examples/mp3test1.mp3"
 
   rating = random.randint(0, 5)
 
 
 log.info("Path: " + file_path)
-log.info("Rating: " + str(args.rating))
+log.info("Rating: " + str(rating))
+
 
 if os.path.splitext(file_path)[1] == ".mp3":
   log.info("MP3 file detected")

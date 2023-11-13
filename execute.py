@@ -5,7 +5,6 @@ Description:
   Key name: StarSetter
 """
 
-import os
 import win32com.client
 from mutagen.id3 import POPM, ID3, COMM
 from mutagen.mp4 import MP4
@@ -80,16 +79,39 @@ def set_stars_image(file_path, rating):
 
   log = ""
 
-  # registry_path = 
+  # Base registry folder being searched
+  location = winreg.HKEY_LOCAL_MACHINE
+  # Path from location to desired file type
+  registry_path = "SOFTWARE\\Classes\\.jpg"
 
-  file = open(file_path, "w")
+  log += "Location: " + str(location) + "\n"
+  log += "Registry Path: " + registry_path + "\n"
+  print(log)
 
   try:
-    # Write content to the file
-    file.write(content)
-  finally:
-      # Close the file
-      file.close()
+    key = winreg.OpenKey(location, registry_path)
+    print(winreg.QueryValueEx(key, 'Content Type'))
+    # key: registry key open, in this case, the .jpg key
+    # 'content type': is a value_name, the name of a subkey that has a value
+    # Unused arguments: reserved, type, value
+    perceived_type, _ = winreg.QueryValueEx(key, 'Content Type')
+    print(f'PerceivedType: {perceived_type}')
+
+  except Exception as e:
+      print('Error: ' + e)
+      log += 'Error: ' + e
+
+
+  # registry_path = 
+
+  # file = open(file_path, "w")
+
+  # try:
+  #   # Write content to the file
+  #   file.write(content)
+  # finally:
+  #     # Close the file
+  #     file.close()
 
   # with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, file_path) as key:
   #   print(key)
@@ -120,7 +142,7 @@ def set_stars_image(file_path, rating):
 
   #       break
 
-  #   return log
+  return log
 
   #   return "Rating not found"
 
