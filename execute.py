@@ -91,9 +91,12 @@ def set_stars_image(file_path, rating):
   try:
     key = winreg.OpenKey(location, registry_path)
     print(winreg.QueryValueEx(key, 'Content Type'))
+    # winreg.SetValueEx(key, value_name, reserved, type, value)
     # key: registry key open, in this case, the .jpg key
-    # 'content type': is a value_name, the name of a subkey that has a value
-    # Unused arguments: reserved, type, value
+    # value_name: 'content type', the name of a subkey that has a value
+    # reserved: literally does nothing, can be any number, 0 is always read by windows
+    # type: Refers to https://docs.python.org/3/library/winreg.html#value-types
+    # value: String that specifies new value
     perceived_type, _ = winreg.QueryValueEx(key, 'Content Type')
     print(f'PerceivedType: {perceived_type}')
 
