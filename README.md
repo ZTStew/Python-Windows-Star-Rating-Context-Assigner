@@ -28,3 +28,7 @@ Computer\HKEY_CLASSES_ROOT\mp3file\shell\test\command
 ### Resources:
 https://docs.python.org/3/library/winreg.html  
 https://stackoverflow.com/questions/2123762/add-menu-item-to-windows-context-menu-only-for-specific-filetype  
+
+
+sys_turnal - microsoft app -> used to read all file data as plain text
+symantek disk doctor
